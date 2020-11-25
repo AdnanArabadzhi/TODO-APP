@@ -8,8 +8,9 @@ export class TaskService {
 
   constructor(private service: WebrequestService) { }
 
-  createList(description: string) {
-    return this.service.post('todos', { description })
+  createList(description: string, day: string) {
+    console.log(description + ' T ' + day);
+    return this.service.post('todos', { description, day })
   }
 
   getTodos() {

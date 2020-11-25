@@ -10,8 +10,26 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Task</label>
         <input #TodoDescInput type="text" class="form-control" id="descriptionExample" placeholder="Enter your task...">
-        <button type="button" class="btn btn-success" (click)="createNewTask(TodoDescInput.value)">Add Task</button>
+        <div class="form-group">
+          <select #selected class="form-control" id="sel1">
+            <option selected="" value="" selected disabled>Choose your day</option>
+            <option *ngFor="let day of weekDays" >{{day}}</option>
+          </select>
+    </div>
+        <button type="button" class="btn btn-success" (click)="createNewTask(TodoDescInput.value, selected.value)">Add Task</button>
       </div>
+      <div >
+        <legend>Todo-list by days</legend>
+        <button type="button" class="btn btn-success" #button1 (click)="getList(button1.innerHTML)">Monday</button>
+        <button type="button" class="btn btn-success" #button2 (click)="getList(button2.innerHTML)">Tuesday</button>
+        <button type="button" class="btn btn-success" #button3 (click)="getList(button3.innerHTML)">Wednesday</button>
+        <button type="button" class="btn btn-success" #button4 (click)="getList(button4.innerHTML)">Thursday</button>
+        <button type="button" class="btn btn-success" #button5 (click)="getList(button5.innerHTML)">Friday</button>
+        <button type="button" class="btn btn-success" #button6 (click)="getList(button6.innerHTML)">Saturday</button>
+        <button type="button" class="btn btn-success" #button7 (click)="getList(button7.innerHTML)">Sunday</button>
+      </div>
+      
+
       <div class="form-group">
         <label for="exampleSelect2">TODO-List</label>
         <a class="form-control" *ngFor="let todo of todos">
