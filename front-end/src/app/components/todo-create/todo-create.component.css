@@ -1,4 +1,10 @@
 #todoButton {
 text-align: end;
+padding: 6px 25px;
+  text-decoration: none;
+  display: inline-block;
 
+}
+
+#line{
 }
