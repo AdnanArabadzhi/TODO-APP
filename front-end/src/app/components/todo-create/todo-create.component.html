@@ -9,7 +9,7 @@
       
       <div class="form-group">
         <label for="exampleInputEmail1">Task</label>
-        <input #TodoDescInput type="text" class="form-control" id="descriptionExample" placeholde="Enter your task...">
+        <input #TodoDescInput type="text" class="form-control" id="descriptionExample" placeholder="Enter your task...">
         <button type="button" class="btn btn-success" (click)="createNewTask(TodoDescInput.value)">Add Task</button>
       </div>
       <div class="form-group">
@@ -17,9 +17,13 @@
         <a class="form-control" *ngFor="let todo of todos">
           <a id="line">{{ todo.description }} 
             <button type="button" class="btn btn-danger float-right" id="todoButton" (click)="deleteTask(todo.todo_id)">Delete</button>
-            <button type="button" class="btn btn-secondary float-right" id="todoButton" (click)="editTask(todo.description)">Edit</button>
+            <button type="button" class="btn btn-secondary float-right" id="todoButton" (click)="editTask(todo.description, todo.todo_id)">Edit</button>
           </a>
         </a>
+            <div class="form-group" *ngIf="buttonClicked">
+            <input type="text" class="form-control" #inputche>
+            <button type="button" class="btn btn-secondary float-right" id="todoButton" (click)="editTodo(inputche.value, id)">Complete</button>
+            </div>
       </div>
       <div class="form-group">
       </div>
