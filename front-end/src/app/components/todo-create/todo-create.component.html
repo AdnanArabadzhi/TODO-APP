@@ -21,8 +21,8 @@
           </a>
         </a>
             <div class="form-group" *ngIf="buttonClicked">
-            <input type="text" class="form-control" #inputche>
-            <button type="button" class="btn btn-secondary float-right" id="todoButton" (click)="editTodo(inputche.value, id)">Complete</button>
+            <input type="text" class="form-control" #input>
+            <button type="button" class="btn btn-secondary float-right" id="todoButton" (click)="editTodo(input.value, id)">Complete</button>
             </div>
       </div>
       <div class="form-group">

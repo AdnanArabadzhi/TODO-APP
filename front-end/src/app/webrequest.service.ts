@@ -24,4 +24,7 @@ export class WebrequestService {
   delete(url: string) {
     return this.http.delete(`${this.ROOT_URL}/${url}`);
   }
+  put(url: string, id: string) {
+    return this.http.put(`${this.ROOT_URL}/${url}`, url);
+  }
 }

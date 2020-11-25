@@ -38,19 +38,17 @@ export class TodoCreateComponent implements OnInit {
       console.log(response);
     });
   }
-  editTask(desc: string, id: string) {
-    console.log(desc);
-    console.log(id);
-    if(desc){
+  editTask(description: string, id: string) {
+    if(description){
     this.buttonClicked = true;
-    this.description = desc;
+    this.description = description;
     this.id = id;
-    console.log(this.description)
+    console.log(this.description);
+    console.log(this.id);
     }
-    console.log(this.buttonClicked);
   }
-    editTodo(descrip: string, id: string) {
-      this.service.updateTodo(descrip, id).subscribe((response: any) => {
+    editTodo(description: string, id: string) {
+      this.service.updateTodo(description, id).subscribe((response: any) => {
         console.log(response);
       })
   }

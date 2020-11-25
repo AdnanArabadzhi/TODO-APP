@@ -19,8 +19,8 @@ export class TaskService {
     console.log(id);
     return this.service.delete(`todos/${id}`);
   }
-  updateTodo(desc: string, id: string) {
-    console.log(desc + '  ' + id);
-    return this.service.post(`todos/${id}`, desc);
+  updateTodo(description: string, id: string) {
+    console.log(description + '  ' + id);
+    return this.service.put(`todos/${id}`, { description });
   }
 }
