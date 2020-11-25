@@ -32,11 +32,17 @@ export class TodoCreateComponent implements OnInit {
     this.service.createList(description).subscribe((response: any) => {
       console.log(response);
     })
+    this.service.getTodos().subscribe((todos: any) => {
+      this.todos = todos;
+    })
   }
   deleteTask(id: string) {
     this.service.deleteTodo(id).subscribe((response: any) => {
       console.log(response);
     });
+    this.service.getTodos().subscribe((todos: any) => {
+      this.todos = todos;
+    })
   }
   editTask(description: string, id: string) {
     if(description){
@@ -50,6 +56,10 @@ export class TodoCreateComponent implements OnInit {
     editTodo(description: string, id: string) {
       this.service.updateTodo(description, id).subscribe((response: any) => {
         console.log(response);
+        this.service.getTodos().subscribe((todos: any) => {
+          this.todos = todos;
+        })
+        this.buttonClicked = false;
       })
   }
 }

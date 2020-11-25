@@ -3,7 +3,8 @@ import { Route, RouterModule } from '@angular/router';
 import { TodoCreateComponent } from './components/todo-create/todo-create.component';
 
 const appRoutes: Route[] = [
-  { path: '', component: TodoCreateComponent }
+  {path: '', pathMatch: 'full', redirectTo: 'todo'},
+  { path: 'todo', component: TodoCreateComponent }
   ];
 
 @NgModule({

@@ -21,6 +21,7 @@ export class TaskService {
   }
   updateTodo(description: string, id: string) {
     console.log(description + '  ' + id);
-    return this.service.put(`todos/${id}`, { description });
+    return this.service.put(`todos/${id}`,  { description:description } );
+    this.getTodos();
   }
 }
