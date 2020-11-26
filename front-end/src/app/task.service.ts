@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { WebrequestService } from './webrequest.service';
 
@@ -6,7 +7,8 @@ import { WebrequestService } from './webrequest.service';
 })
 export class TaskService {
 
-  constructor(private service: WebrequestService) { }
+  constructor(private service: WebrequestService) {
+   }
 
   createList(description: string, day: string) {
     console.log(description + ' T ' + day);
@@ -24,5 +26,9 @@ export class TaskService {
     console.log(description + '  ' + id);
     return this.service.put(`todos/${id}`,  { description:description } );
     this.getTodos();
+  }
+  completeTodo(id: string, payload: any) {
+    return this.service.complete(`todos/complete/${id}`, payload);
+
   }
 }

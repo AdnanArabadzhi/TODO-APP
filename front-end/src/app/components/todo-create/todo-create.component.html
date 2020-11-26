@@ -15,8 +15,8 @@
             <option selected="" value="" selected disabled>Choose your day</option>
             <option *ngFor="let day of weekDays" >{{day}}</option>
           </select>
+        <button type="button" class="btn btn-primary" (click)="createNewTask(TodoDescInput.value, selected.value)">Add Task</button>
     </div>
-        <button type="button" class="btn btn-success" (click)="createNewTask(TodoDescInput.value, selected.value)">Add Task</button>
       </div>
       <div >
         <legend>Todo-list by days</legend>
@@ -35,12 +35,19 @@
         <a class="form-control" *ngFor="let todo of todos">
           <a id="line">{{ todo.description }} 
             <button type="button" class="btn btn-danger float-right" id="todoButton" (click)="deleteTask(todo.todo_id)">Delete</button>
-            <button type="button" class="btn btn-secondary float-right" id="todoButton" (click)="editTask(todo.description, todo.todo_id)">Edit</button>
+            <button type="button" class="btn btn-secondary float-right" id="todoButton" *ngIf="!todo.date_of_completion" (click)="editTask(todo.description, todo.todo_id)">Edit</button>
           </a>
+          <div *ngIf="!todo.date_of_completion; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>-created on: {{ todo.date_of_creation }}</ng-template>
+<ng-template #elseBlock>-COMPLETED ON: {{ todo.date_of_completion }}</ng-template>
+
+          <!-- <a *ngIf="!todo.date_of_completion" #line>-created on: {{ todo.date_of_creation }}</a> -->
         </a>
             <div class="form-group" *ngIf="buttonClicked">
             <input type="text" class="form-control" #input>
-            <button type="button" class="btn btn-secondary float-right" id="todoButton" (click)="editTodo(input.value, id)">Complete</button>
+            <button type="button" class="btn btn-secondary float-right" id="todoButton"  (click)="editTodo(input.value, id)">Edit</button>
+            <button type="button" class="btn btn-warning float-right" id="todoButton" (click)="completeTodo(id, 'complete')">Complete</button>
+
             </div>
       </div>
       <div class="form-group">

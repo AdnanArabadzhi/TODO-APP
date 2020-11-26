@@ -27,4 +27,7 @@ export class WebrequestService {
   put(url: string, payload: any) {
     return this.http.put(`${this.ROOT_URL}/${url}`, payload);
   }
+  complete(url: string, payload: any) {
+    return this.http.put(`${this.ROOT_URL}/${url}`, payload);
+  }
 }

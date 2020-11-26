@@ -16,12 +16,13 @@ export class TodoCreateComponent implements OnInit {
   weekDays: any;
   day: string;
   currentDay: string;
+  completed: any;
+  doneDeals: Array<string>;
 
   constructor(private service: TaskService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    console.log(this.weekDays);
     this.route.params.subscribe(
       (params: Params) => {
         console.log(params);
@@ -36,6 +37,7 @@ export class TodoCreateComponent implements OnInit {
       for(let i = 0; i < todos.length; i++){
         if(this.currentDay === todos[i].weekday){
           newnew.push(todos[i])
+          console.log(newnew);
         }
       }
       this.todos = newnew;
@@ -95,5 +97,25 @@ export class TodoCreateComponent implements OnInit {
         })
         this.buttonClicked = false;
       })
+  }
+
+  
+  completeTodo(id: string, payload: any) {
+    console.log(id);
+    this.doneDeals = ['id'];
+    console.log(this.doneDeals);
+    this.service.completeTodo(id, payload).subscribe((response: any) => {
+      this.completed = true;
+      this.service.getTodos().subscribe((todos: any) => {
+        const newnew = [];
+    for(let i = 0; i < todos.length; i++){
+      if(this.currentDay === todos[i].weekday){
+        newnew.push(todos[i])
+      }
+    }
+    this.todos = newnew;
+    this.buttonClicked = false;
+      })
+    })
   }
 }
