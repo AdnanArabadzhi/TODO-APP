@@ -1,0 +1,33 @@
+<div class="row space-top">
+    <div class="col-md-12">
+        <h1>ADD EMPLOYEE</h1>
+    </div>
+</div>
+
+  <form>
+
+      <input #name type="text" class="form-control" id="descriptionExample" placeholder="Enter your name...">
+      <input #age type="text" class="form-control" id="descriptionExample" placeholder="Enter your age...">
+      <select #gender class="form-control" id="sel1">
+        <option selected="" value="" selected disabled>Choose your gender</option>
+        <option >{{ 'MALE' }}</option>
+        <option >{{'FEMALE'}}</option>
+        <option *ngFor="let gender of genders" >{{gender}}</option>
+    </select>
+    <select #position class="form-control" id="sel1">
+        <option selected="" value="" selected disabled>Choose your position</option>
+        <option >{{'Duner'}}</option>
+        <option >{{'Junior'}}</option>
+        <option >{{'Senior'}}</option>
+        <option >{{'Menager'}}</option>
+        <option >{{'Boss'}}</option>
+    </select>
+    <form class="form-inline" (ngSubmit)="createNewPerson(name.value, age.value, gender.value, position.value, selected1.value)">
+        <select #selected1 class="form-control" id="sel1" [(ngModel)]="selected">
+          <option selected="" value="" selected disabled>Choose your todo</option>
+          <option *ngFor="let todo of todos" [value]="todo.todo_id">{{todo.description}}</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Add Employee</button>
+      </form>
+    
+</form>

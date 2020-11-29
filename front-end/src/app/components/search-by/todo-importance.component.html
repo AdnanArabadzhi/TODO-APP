@@ -1,0 +1,102 @@
+<!-- <div >
+    
+  </div>
+  <a class="form-control" *ngFor="let todo of todos">
+    <a id="line">{{ todo.description }} 
+      <button type="button" class="btn btn-danger float-right" id="todoButton" (click)="deleteTask(todo.todo_id)">Delete</button>
+      <button type="button" class="btn btn-secondary float-right" id="todoButton" *ngIf="!todo.date_of_completion" (click)="editTask(todo.description, todo.todo_id)">Edit</button>
+    </a>
+    <div *ngIf="!todo.date_of_completion; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>-created on: {{ todo.date_of_creation }}</ng-template>
+      <ng-template #elseBlock>-COMPLETED ON: {{ todo.date_of_completion }}</ng-template>
+</a> -->
+<form #form="ngForm" (submit)="search(form.value)">
+<pre> {{ form.value | json }}</pre>
+<div class="form-group input-group">
+    <legend>Search tasks by importance</legend>
+
+<select name="selected" class="form-control" id="sel1" [(ngModel)]="selected" ngModel >
+  <option selected1="" value="" selected >Choose your importance</option>
+  <option *ngFor="let lis of list" >{{lis.importance}}</option>
+</select>
+
+
+  <legend>Search tasks by employee</legend>
+
+<select name="selected3" class="form-control" id="sel1" [(ngModel)]="selected3" ngModel>
+  <option selected1="" value="" selected >Choose employee</option>
+  <option *ngFor="let employee of employees" >{{employee.name}}</option>
+</select>
+
+<button type="submit" class="btn btn-primary" >Search</button>
+
+</div>
+
+</form>
+
+
+
+<a #idvata *ngIf="clickedButton">
+  <a>
+    {{selected3}} Has these "{{ selected }}"" tasks:
+    <a #list class="form-control float-right" *ngFor="let newTodo of newTodos">
+      <a>{{ newTodo.description }} 
+      </a>
+    </a>
+  </a>
+</a>
+
+<a #named *ngIf="clickedWithName">
+  <a>
+    {{selected3}} Has to do:
+    <a #list class="form-control float-right" *ngFor="let newname of newTodos">
+      <a>{{ newname.todoid }} 
+     </a>
+    </a>
+  </a>
+</a>
+
+
+  <a *ngIf="clickedWithImportant">
+    <a>
+      There are these {{ selected }} tasks to do:
+      <a #list class="form-control float-right" *ngFor="let newTodo of newTodos">
+        <a>{{ newTodo.description }} 
+      </a>
+    </a>
+  </a>
+</a>
+
+
+
+
+
+
+  <!-- <legend>Search tasks by days</legend>
+
+<select name="selected2" class="form-control" id="sel1" [(ngModel)]="selected2" ngModel>
+  <option selected2="" value="" selected disabled>Choose your day</option>
+  <option *ngFor="let day of weekDays" >{{day}}</option>
+</select> -->
+
+
+
+
+<!-- <div class="form-group">
+  <legend>{{clickedButton}}</legend>
+  <a class="form-control" *ngFor="let todo of todos">
+      <a id="line">{{ todo.description }} 
+        <button type="button" class="btn btn-danger float-right" id="todoButton" (click)="deleteTask(todo.todo_id)">Delete</button>
+        <button type="button" class="btn btn-secondary float-right" id="todoButton" *ngIf="!todo.date_of_completion" (click)="editTask(todo.description, todo.todo_id)">Edit</button>
+      </a>
+      <div *ngIf="!todo.date_of_completion; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>-created on: {{ todo.date_of_creation }}</ng-template>
+        <ng-template #elseBlock>-COMPLETED ON: {{ todo.date_of_completion }}</ng-template>
+  </a>
+      <div class="form-group" *ngIf="buttonClicked">
+        <input type="text" class="form-control" #input>
+        <button type="button" class="btn btn-secondary float-right" id="todoButton"  (click)="editTodo(input.value, id)">Edit</button>
+        <button type="button" class="btn btn-warning float-right" id="todoButton" (click)="completeTodo(id, 'complete')">Complete</button>
+
+      </div>
+</div> -->

@@ -1,0 +1,14 @@
+a {
+    width: 1000px;
+}
+#complete {
+    width: 500px;
+}
+#todoButton {
+  
+  text-align: end;
+  padding: 3px 25px;
+  text-decoration: none;
+  display: inline-block;
+
+}

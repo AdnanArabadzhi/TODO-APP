@@ -1,0 +1,17 @@
+<div #complete class="form-group" >
+    <input type="text" class="form-control" #input > 
+    <button type="button" class="btn btn-secondary float-left" id="todoButton"  (click)="editTodo(input.value, id)">Edit</button>
+    <button type="button" class="btn btn-warning float-left" id="todoButton" (click)="completeTodo(id, 'complete')">Complete</button>
+
+  </div>
+<a #list class="form-control float-right" *ngFor="let todo of todos">
+    <a id="line">{{ todo.description }} 
+      <button type="button" class="btn btn-danger float-right" id="todoButton" (click)="deleteTask(todo.todo_id)">Delete</button>
+      <button type="button" class="btn btn-secondary float-right" id="todoButton" *ngIf="!todo.date_of_completion" (click)="editTask(todo.description, todo.todo_id)">Edit</button>
+    </a>
+    <div *ngIf="!todo.date_of_completion; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>-created on: {{ todo.date_of_creation }}</ng-template>
+      <ng-template #elseBlock>-COMPLETED ON: {{ todo.date_of_completion }}</ng-template>
+</a> 
+
+<!-- *ngIf="buttonClicked" -->

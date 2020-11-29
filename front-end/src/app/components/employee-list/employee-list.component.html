@@ -1,0 +1,8 @@
+<div>
+    <legend>Search tasks by employee</legend>
+    <select #selected1 class="form-control" id="sel1">
+      <option selected="" value="" selected disabled>Choose your employee</option>
+      <option *ngFor="let lis of list" >{{lis.name}}</option>
+    </select>
+  </div>
+  

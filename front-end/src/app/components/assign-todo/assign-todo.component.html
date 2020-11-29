@@ -1,0 +1,24 @@
+<h1>Assign todo to employee</h1>
+<form #form="ngForm" (submit)="assign(form.value)">
+    <pre> {{ form.value | json }}</pre>
+    <div class="form-group input-group">
+        <legend>Enter Employee</legend>
+      
+      <select name="selected" class="form-control" id="sel1" [(ngModel)]="selected" ngModel>
+        <option selected="" value="" selected >Choose employee</option>
+        <option *ngFor="let employee of employees" >{{employee.name}}</option>
+      </select>
+      
+        <legend>Enter Todo</legend>
+    
+    <select name="selected2" class="form-control" id="sel1" [(ngModel)]="selected2" ngModel >
+      <option selected2="" value="" >Choose your todo</option>
+      <option *ngFor="let todo of todos" selected idfromHTML="todo.todo_id">{{todo.description}}_{{ todo.todo_id}}</option>
+    </select>
+
+    
+    <button type="submit" class="btn btn-primary">Assign</button>
+    
+    </div>
+    
+    </form>

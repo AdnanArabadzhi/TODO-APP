@@ -18,11 +18,15 @@ export class TodoCreateComponent implements OnInit {
   currentDay: string;
   completed: any;
   doneDeals: Array<string>;
+  clickedButton: string;
+  importance: any;
 
   constructor(private service: TaskService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    this.importance = ['very important', 'important', 'not important'];
+
     this.route.params.subscribe(
       (params: Params) => {
         console.log(params);
@@ -30,23 +34,22 @@ export class TodoCreateComponent implements OnInit {
     )
   }
 
-  getList(currentDay: string) {
-    this.service.getTodos().subscribe((todos: any) => {
-      this.currentDay = currentDay; 
-      const newnew = [];
-      for(let i = 0; i < todos.length; i++){
-        if(this.currentDay === todos[i].weekday){
-          newnew.push(todos[i])
-          console.log(newnew);
-        }
-      }
-      this.todos = newnew;
-    })
-  }
 
-  createNewTask(description: string, day: string) {
+  createNewTask(description: string, day: string, importance: string) {
+    let importanceNumber = 0;
+    switch(importance) {
+      case "very important":
+        importanceNumber = 1;
+        break;
+        case "important":
+        importanceNumber = 2;
+        break;
+        case "not important":
+        importanceNumber = 3;
+        break;
+    }
     console.log(description + ' - ' + day);
-    this.service.createList(description, day).subscribe((response: any) => {
+    this.service.createList(description, day, importanceNumber).subscribe((response: any) => {
       console.log(response);
     })
     this.service.getTodos().subscribe((todos: any) => {
@@ -59,6 +62,23 @@ export class TodoCreateComponent implements OnInit {
       this.todos = newnew;
     })
   }
+
+
+  getList(currentDay: string) {
+    this.service.getTodos().subscribe((todos: any) => {
+      this.currentDay = currentDay; 
+      this.clickedButton = currentDay;
+      const newnew = [];
+      for(let i = 0; i < todos.length; i++){
+        if(this.currentDay === todos[i].weekday){
+          newnew.push(todos[i])
+          console.log(newnew);
+        }
+      }
+      this.todos = newnew;
+    })
+  }
+
   deleteTask(id: string) {
     this.service.deleteTodo(id).subscribe((response: any) => {
       console.log(response);
@@ -73,6 +93,7 @@ export class TodoCreateComponent implements OnInit {
       this.todos = newnew;
     })
   }
+
   editTask(description: string, id: string) {
     if(description){
     this.buttonClicked = true;
@@ -82,6 +103,7 @@ export class TodoCreateComponent implements OnInit {
     console.log(this.id);
     }
   }
+
     editTodo(description: string, id: string) {
       console.log(this.currentDay + '    tva e');
       this.service.updateTodo(description, id).subscribe((response: any) => {
