@@ -12,6 +12,7 @@ const appRoutes: Route[] = [
   { path: 'todo/details', component: TodoImportanceComponent },
   { path: 'list', component: EmployeeListComponent },
   { path: 'todo/list', component: TodosListComponent },
+  // {path: '*/**', component: TodosListComponent}
   ];
 
 @NgModule({

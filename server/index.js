@@ -27,15 +27,16 @@ app.post("/todos", async(req, res) => {
 
 app.post("/person", async(req, res) => {
     try {
-        console.log(req);
         const name = req.body.name;
         const age = req.body.age;
         const gender = req.body.gender;
         const position = req.body.position;
         const todosID = req.body.todo;
-        console.log(typeof parseInt(todosID));   
-        console.log(name + '   T   ' + age + '     T    ' + gender + '     T    ' + position + '     T    ' + todosID);
-       const newTodo = await pool.query("INSERT INTO person (name, age, gender, position, todosID) VALUES($1, $2, $3, $4, $5) RETURNING *", [name, age, gender, position, todosID]);
+        // console.log(name + '   T   ' + age + '     T    ' + gender + '     T    ' + position + '     T    ' + todosID);
+        const newTodo = await pool.query("INSERT INTO person (name, age, gender, position, todosID) VALUES($1, $2, $3, $4, $5) RETURNING *", [name, age, gender, position, todosID]);
+        const employeeidFound = await pool.query("SELECT id FROM person WHERE name = $1", [name]);
+        const employeeid = employeeidFound.rows[0].id;
+        const newTask = await pool.query("INSERT INTO employeeTodoRelation (employeeid, todoid) VALUES($1, $2)", [employeeid, todosID]);
        res.json(newTodo);
     } catch (err) {
         console.error(err.message);
@@ -150,8 +151,9 @@ let imeto = 0;
 
             
         }else if(nameExist){
-            console.log('TUKAS SME');
+            console.log('TUKA SME');
             const nameOutput = await pool.query("SELECT * FROM  employeeTodoRelation WHERE employeeid IN ($1)", [imeto])
+            
             console.log(nameOutput.rows);
             nameOUT = nameOutput.rows;
             console.log(nameOUT);
